@@ -1,0 +1,12 @@
+untuk merubah object state, gunakan this.setState({})
+
+membuat method yang akan menangani perubahan state, haruslah dalam bentuk arrow function, agar this yang
+digunakan dalam method tersebut mengarah ke this global
+sedangkan this pada function biasa akan mengarah ke this local method itu sendiri
+
+untuk mengupdate state yang ada pada parent lewat child component, pada parent, child component tersebut
+menerima sebuah prop, yang akan memanggil method di class parent tersebut untuk menangani perubahan state
+yang terjadi.
+Sedangkan pada shild component, buat sebuah method yang akan mengirimkan nilai baru pada props yang dibuat
+di class parent, dan method tersebut dipanggil pada method yang menangani perubahan state yang terjadi pada
+child component

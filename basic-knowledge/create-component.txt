@@ -1,0 +1,30 @@
+semua component yang dibuat, simpan kedalam folder lain:
+    component -> component stateless, component2 yang akan digunakan
+    container -> component statefull, page atau container yang akan menampung component stateless
+agar lebih rapi lagi, buat folder tersendiri untuk masing2 component
+
+
+untuk pemberian nama class pada tag html, gunakan className
+
+stateless component dibuat dengan menggunakan function, contoh
+const HelloComponent = _ => {
+  return <p className="text-p">Hello Functional Component</p>
+}
+props pada stateless component dapat diakses langsung dengan parameter props
+
+statefull component dibuat menggunakan class, contoh
+class StateFullComponent extends React.Component {
+  render() {
+    return <p>State Full Component</p>
+  }
+}
+pada statefull component, terdapat sebuah atribut stare
+pada statefull component, untuk propsnya, menggunakan this.props
+
+component dynamis menggunakan props, dan untuk mengatur nilai default dari props yang kita buat, atur di dalam
+folder component tersebut
+
+
+<React.StrictMode>
+    <App />
+</React.StrictMode>

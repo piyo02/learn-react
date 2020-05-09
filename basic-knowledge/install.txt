@@ -1,0 +1,2 @@
+untuk membuat project, gunakan command:
+$ create-react-app name-app
