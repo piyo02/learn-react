@@ -36,6 +36,7 @@ p.title {
     margin: 0;
     margin-top: 10px;
     color: #2d2d2d;
+    cursor: pointer;
 }
 
 p.desc {

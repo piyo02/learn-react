@@ -10,3 +10,14 @@ yang terjadi.
 Sedangkan pada shild component, buat sebuah method yang akan mengirimkan nilai baru pada props yang dibuat
 di class parent, dan method tersebut dipanggil pada method yang menangani perubahan state yang terjadi pada
 child component
+
+
+state management kita gunakan ketika kita memiliki sebuah component yang memiliki level child yang sangat besar,
+dan props pada parent diubah oleh child level terbawah dari component tersebut. Tanpa state management kita
+harus mengirimkan props disetiap level child agar state diparent dapat berubah walaupun props tersebut kita
+tidak gunakan pada level child yang dilewatinya
+
+redux => third party
+
+
+context => punya react
