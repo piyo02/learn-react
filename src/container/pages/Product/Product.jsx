@@ -1,7 +1,8 @@
 import React, {Component, Fragment} from 'react';
-import {connect} from 'react-redux';
+// import {connect} from 'react-redux';
 
 import CardProduct from './CardProduct/CardProduct';
+import { GlobalConsumer } from '../../../context/context';
 import './Product.css';
 
 class Product extends Component {
@@ -24,7 +25,7 @@ class Product extends Component {
                     </div>
                     <div className="troley">
                         <img src="" alt=""/>
-                        <div className="count">{this.props.order}</div>
+                        <div className="count">{this.props.state.totalOrder}</div>
                     </div>
                 </div>
                 <CardProduct />
@@ -34,10 +35,11 @@ class Product extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        order: state.totalOrder
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         order: state.totalOrder
+//     }
+// }
 
-export default connect(mapStateToProps)(Product);
+export default GlobalConsumer(Product);
+// export default connect(mapStateToProps)(Product);

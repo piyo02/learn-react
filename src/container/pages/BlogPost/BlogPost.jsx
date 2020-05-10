@@ -1,7 +1,8 @@
 import React, {Component, Fragment} from 'react';
+
 import './BlogPost.css';
 import CardPost from '../../../component/CardPost/CardPost';
-import axios from 'axios';
+import API from '../../../services';
 
 class BlogPost extends Component {
     state = {
@@ -12,22 +13,60 @@ class BlogPost extends Component {
             title: '',
             body: ''
         },
-        isUpdate: false
+        isUpdate: false,
+        comments: []
     }
 
+    // lifecycle
     componentDidMount() {
         this.getPostsAPI()
     }
 
+    // API
     getPostsAPI = () => {
-        axios.get('http://localhost:3004/posts?_sort=id&_order=desc')
-            .then(resp => {
+        API.getNewsBlog()
+            .then(result => {
                 this.setState({
-                    post: resp.data
+                    post: result
                 })
             })
     }
+    postDataToAPI = () => {
+        API.postNewsBlog(this.state.formBlogPost)
+            .then( result => {
+                this.getPostsAPI();
+                this.setState({
+                    formBlogPost: {
+                        userId: 1,
+                        id: 1,
+                        title: '',
+                        body: ''
+                    },
+                });
+            })
+            .catch( error => console.log(error) )
+    }
+    putDataToAPI = () => {
+        API.putNewsBlog(this.state.formBlogPost.id, this.state.formBlogPost)
+            .then( result => {
+                this.getPostsAPI();
+                this.setState({
+                    isUpdate: false,
+                    formBlogPost: {
+                        userId: 1,
+                        id: 1,
+                        title: '',
+                        body: ''
+                    },
+                })
+            } )
+    }
+    handleRemove = (data) => {
+        API.deleteNewsBlog(data)
+            .then( result => this.getPostsAPI() )
+    }
 
+    // action
     handleFormChange = (event) => {
         let formBlogPostNew = {...this.state.formBlogPost};
         
@@ -47,39 +86,11 @@ class BlogPost extends Component {
         this.state.isUpdate ? this.putDataToAPI() : this.postDataToAPI();
     }
 
-    postDataToAPI = () => {
-        axios.post('http://localhost:3004/posts', this.state.formBlogPost)
-            .then( result => this.getPostsAPI())
-            .catch( error => console.log(error) )
-    }
-
-    putDataToAPI = () => {
-        axios.put(`http://localhost:3004/posts/${this.state.formBlogPost.id}`, this.state.formBlogPost)
-            .then( result => {
-                this.getPostsAPI();
-                this.setState({
-                    isUpdate: false,
-                    formBlogPost: {
-                        userId: 1,
-                        id: 1,
-                        title: '',
-                        body: ''
-                    },
-                })
-            } )
-    }
-
     handleUpdate = (data) => {
         this.setState({
             formBlogPost: data,
             isUpdate: true
         })
-    }
-
-    handleRemove = (data) => {
-        console.log(data)
-        axios.delete(`http://localhost:3004/posts/${data}`)
-            .then( result => this.getPostsAPI() )
     }
 
     handleDetail = (id) => {

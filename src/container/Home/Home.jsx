@@ -9,11 +9,10 @@ import DetailPost from '../pages/BlogPost/DetailPost/DetailPost';
 
 import './Home.css';
 
+import GlobalProvider from '../../context/context';
+
+
 class Home extends Component {
-    state = {
-        showComponent: true
-    }
-    
     render() {
         return(
 
@@ -37,4 +36,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default GlobalProvider(Home);
