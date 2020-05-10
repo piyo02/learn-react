@@ -19,5 +19,4 @@ tidak gunakan pada level child yang dilewatinya
 
 redux => third party
 
-
 context => punya react

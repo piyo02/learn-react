@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
+import {connect} from 'react-redux';
 
 class LifeCycleComp extends Component{
     // umumnya digunakan constructor, render, componentDidMount, componentDidUpdate, componentWillUnmount
@@ -27,7 +28,11 @@ class LifeCycleComp extends Component{
     render() {
         console.log('render')
         return(
-            <button onClick={this.countChange}>Component Button {this.state.count} </button>
+            <Fragment>
+                <button onClick={this.countChange}>Component Button {this.state.count} </button>
+                <hr/>
+            <p>Total Order: {this.props.order}</p>
+            </Fragment>
         );
     }
 
@@ -66,4 +71,10 @@ class LifeCycleComp extends Component{
     }
 }
 
-export default LifeCycleComp;
+const mapStateToProps = (state) => {
+    return {
+        order: state.totalOrder
+    }
+}
+
+export default connect(mapStateToProps)(LifeCycleComp);
